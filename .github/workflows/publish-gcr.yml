@@ -22,6 +22,9 @@ on:
 # concurrency:
 #   group: ${{ github.workflow }}-${{ github.ref }}-${{github.event.inputs.runs-on }}
 #   cancel-in-progress: false
+permissions:
+  contents: write
+  packages: write
 
 env:
   REGISTRY: ghcr.io
