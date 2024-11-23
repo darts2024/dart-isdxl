@@ -51,9 +51,9 @@ if device == "xpu":
 pipe = pipe.to(device)
 
 
-prompt = os.getenv("PROMPT", "A futuristic cityscape at sunset")
+prompt = os.getenv("PROMPT", "a cat sitting on a park bench")
 
-seed = int(os.getenv("RANDOM_SEED", "42"))
+seed = int(os.getenv("RANDOM_SEED", "40"))
 set_seed(seed)
 
 g = torch.Generator(device="cuda")
