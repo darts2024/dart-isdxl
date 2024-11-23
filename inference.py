@@ -3,6 +3,7 @@ import torch
 
 import numpy as np
 import random
+import logging
 
 os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":16:8"
 
@@ -14,8 +15,10 @@ import torch
 from diffusers import StableDiffusionPipeline
 
 # check Intel GPU
-print(ipex.xpu.get_device_name(0))
-
+try:
+    print(ipex.xpu.get_device_name(0))
+except Exception as e:
+    logging.exception(e)
 
 model_name = "runwayml/stable-diffusion-v1-5"
 
