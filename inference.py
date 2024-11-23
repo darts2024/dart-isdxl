@@ -13,6 +13,17 @@ torch.backends.cudnn.benchmark = False
 import torch
 from diffusers import StableDiffusionPipeline
 
+def set_seed(seed: int = 42) -> None:
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    # When running on the CuDNN backend, two further options must be set
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    # Set a fixed value for the hash seed
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    print(f"Random seed set as {seed}")
 
 model_name = "runwayml/stable-diffusion-v1-5"
 
@@ -42,26 +53,13 @@ pipe = pipe.to(device)
 
 prompt = os.getenv("PROMPT", "A futuristic cityscape at sunset")
 
+seed = int(os.getenv("RANDOM_SEED", "42"))
+set_seed(seed)
+
+g = torch.Generator(device="cuda")
+g.manual_seed(seed)
 
 
-# def set_seed(seed: int = 42) -> None:
-#     np.random.seed(seed)
-#     random.seed(seed)
-#     torch.manual_seed(seed)
-#     torch.cuda.manual_seed(seed)
-#     # When running on the CuDNN backend, two further options must be set
-#     torch.backends.cudnn.deterministic = True
-#     torch.backends.cudnn.benchmark = False
-#     # Set a fixed value for the hash seed
-#     os.environ["PYTHONHASHSEED"] = str(seed)
-#     print(f"Random seed set as {seed}")
-
-# seed = int(os.getenv("RANDOM_SEED", "42"))
-# set_seed(seed)
-
-
-# g = torch.Generator(device="cuda")
-# g.manual_seed(seed)
 
 # For low GPU memory:
 #pipe.enable_model_cpu_offload()
@@ -81,4 +79,6 @@ outputDir = os.getenv("OUTPUT_DIR", "")
 
 for i in range(len(images)):
     image = images[i]
-    image.save(outputDir + f"image-{i}.png")
+    outputImageFile = os.path.join(outputDir,f"image-{i}.png")
+    image.save(outputImageFile)
+    print(f"saved Image-{i} to {outputImageFile}")
