@@ -25,7 +25,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
   PUSH_TAG: ${{github.repository}}:latest
   REPO: ${{github.repository}}
 
@@ -68,9 +67,9 @@ jobs:
         with:
           # base for tags
           images: |
-            ${{ env.REGISTRY }}/${{env.IMAGE_NAME}}
-            ${{ env.REGISTRY }}/sdxl
-            ${{ env.REGISTRY}}/${{github.repository_owner}}/stable-diffusion
+            ${{ env.REGISTRY }}/isdxl
+            ${{env.REGISTRY}}/${{github.repository}}
+            # ${{ env.REGISTRY}}/${{github.repository_owner}}/intel-stable-diffusion
 
           tags: |
             type=schedule
