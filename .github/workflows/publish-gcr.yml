@@ -23,7 +23,7 @@ on:
 #   group: ${{ github.workflow }}-${{ github.ref }}-${{github.event.inputs.runs-on }}
 #   cancel-in-progress: false
 permissions:
-  contents: write
+  contents: read
   packages: write
 
 env:
@@ -45,6 +45,49 @@ jobs:
       contents: read
       packages: write
     steps:
+      - name: Free Space Before
+        run: |
+          echo "Free space:"
+          df -h
+
+      - name: Remove unnecessary
+        run: |
+          sudo rm -rf /usr/share/dotnet &
+          sudo rm -rf /usr/local/lib/android &
+          sudo rm -rf /opt/ghc &
+          sudo rm -rf /opt/hostedtoolcache/CodeQL 
+          sudo docker image prune --all --force &
+          sudo docker system prune -a --volumes -f & 
+          sudo rm -rf /opt/ghc &
+          sudo rm -rf "/usr/local/share/boost" &
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY" &
+
+      - name: Free Space
+        run: |
+          echo "Free space:"
+          df -h
+
+      - name: Point docker dir to /mnt for space
+        run: |
+          # Create the directory for Docker data
+          sudo mkdir /mnt/docker-data
+
+          # Stop Docker service
+          sudo systemctl stop docker
+
+          # Edit the Docker daemon configuration file
+          sudo bash -c 'cat > /etc/docker/daemon.json <<EOF
+          {
+            "data-root": "/mnt/docker-data"
+          }
+          EOF'
+
+          # Start Docker service
+          sudo systemctl start docker
+
+          # Verify the new Docker root directory
+          docker info | grep "Docker Root Dir"
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
