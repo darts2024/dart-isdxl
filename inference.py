@@ -25,7 +25,16 @@ pipe = StableDiffusionPipeline.from_pretrained(model_name,
                                                torch_dtype=torch.float16)
 
 
-pipe = pipe.to("xpu")
+# xpu: Intel
+# cpu: CPU
+# cuda: nvidia
+# mps: mac meta
+
+device = os.getenv("DEVICE", "xpu")
+
+print("Device is",device)
+
+pipe = pipe.to(device)
 
 
 prompt = os.getenv("PROMPT", "A futuristic cityscape at sunset")

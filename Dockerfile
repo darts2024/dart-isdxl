@@ -39,5 +39,6 @@ ENV RANDOM_SEED=40
 
 ENV PROMPT='A futuristic cityscape at sunset'
 ENV OUTPUT_DIR="/outputs/"
+ENV DEVICE="xpu"
 
 ENTRYPOINT ["python3", "/app/inference.py"]
