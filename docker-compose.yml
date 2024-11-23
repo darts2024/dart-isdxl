@@ -9,3 +9,7 @@ services:
         HUGGINGFACE_TOKEN: ${HUGGINGFACE_TOKEN}
     environment:
       HUGGINGFACE_TOKEN: ${HUGGINGFACE_TOKEN}
+    volumes:
+      - ./data:/outputs
+      - ./data:/inputs
+      - .:/app
