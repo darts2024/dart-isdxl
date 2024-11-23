@@ -24,7 +24,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 RUN huggingface-cli login --token $HUGGINGFACE_TOKEN ||  echo "huggingface login failed"
 # python3 -c 'from diffusers import DiffusionPipeline; import torch; DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, use_safetensors=True, variant="fp16")' 
 
-RUN python3 download.py
+RUN python3 /app/download.py
 
 
 RUN rm /root/.cache/huggingface/token
