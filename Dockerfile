@@ -19,8 +19,9 @@ ADD requirements.txt /app/requirements.txt
 ENV PIP_TIMEOUT=1000
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
-    pip3 install huggingface_hub==0.16.4 && \
-    huggingface-cli login --token $HUGGINGFACE_TOKEN 
+    pip3 install huggingface_hub==0.16.4 
+
+RUN huggingface-cli login --token $HUGGINGFACE_TOKEN ||  echo "huggingface login failed"
 # python3 -c 'from diffusers import DiffusionPipeline; import torch; DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, use_safetensors=True, variant="fp16")' 
 
 RUN python3 download.py
