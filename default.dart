@@ -18,7 +18,7 @@
                 "Image": "ghcr.io/darts2024/isdxl:v0.3.0",
                 "EnvironmentVariables": [
                     {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cat sitting on a park bench"{{end}},
-                    {{if .Seed}}"{{ subt "RANDOM_SEED=%s" .Seed }}"{{else}}"RANDOM_SEED=42"{{end}},
+                    "{{ subt "RANDOM_SEED=%s" (or .Seed "42")  }}",
                     "OUTPUT_DIR=/outputs/",
                     "HF_HUB_OFFLINE=1"
                 ]

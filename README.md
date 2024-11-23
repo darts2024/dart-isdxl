@@ -27,3 +27,5 @@ Will overwrite `outputs/image0.png` each time.
 ```
 darts run sdxl:v0.3.0 -i Prompt="hiro saves the hive" -i Seed=16
 ```
+
+Playground: for module: https://go.dev/play/p/ddNw8F2hFO8
