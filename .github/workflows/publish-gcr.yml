@@ -67,8 +67,8 @@ jobs:
         with:
           # base for tags
           images: |
-            ${{ env.REGISTRY }}/isdxl
-            ${{env.REGISTRY}}/${{github.repository}}
+            ${{ env.REGISTRY }}/${{github.repository_owner}}/isdxl
+            ${{ env.REGISTRY }}/${{github.repository}}
             # ${{ env.REGISTRY}}/${{github.repository_owner}}/intel-stable-diffusion
 
           tags: |
