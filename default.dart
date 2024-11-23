@@ -19,6 +19,7 @@
                 "EnvironmentVariables": [
                     {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cat sitting on a park bench"{{end}},
                     "{{ subt "RANDOM_SEED=%s" (or .Seed "42")  }}",
+                    "{{ subt "DEVICE=%s" (or .Device "xpu")  }}",
                     "OUTPUT_DIR=/outputs/",
                     "HF_HUB_OFFLINE=1"
                 ]
