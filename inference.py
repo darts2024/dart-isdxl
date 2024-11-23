@@ -10,15 +10,9 @@ os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":16:8"
 torch.backends.cudnn.benchmark = False
 # torch.use_deterministic_algorithms(True)
 
-import intel_extension_for_pytorch as ipex
 import torch
 from diffusers import StableDiffusionPipeline
 
-# check Intel GPU
-try:
-    print(ipex.xpu.get_device_name(0))
-except Exception as e:
-    logging.exception(e)
 
 model_name = "runwayml/stable-diffusion-v1-5"
 
@@ -36,6 +30,14 @@ pipe = StableDiffusionPipeline.from_pretrained(model_name,
 device = os.getenv("DEVICE", "xpu")
 
 print("Device is",device)
+
+if device == "xpu":
+    import intel_extension_for_pytorch as ipex
+    
+    try:
+        print(ipex.xpu.get_device_name(0))
+    except Exception as e:
+        logging.exception(e)
 
 pipe = pipe.to(device)
 
