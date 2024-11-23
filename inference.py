@@ -17,9 +17,7 @@ from diffusers import StableDiffusionPipeline
 model_name = "runwayml/stable-diffusion-v1-5"
 
 # load the Stable Diffusion model
-pipe = StableDiffusionPipeline.from_pretrained(model_name, 
-                                               revision="fp16", 
-                                               torch_dtype=torch.float16)
+pipe = StableDiffusionPipeline.from_pretrained(model_name)
 
 
 # xpu: Intel
