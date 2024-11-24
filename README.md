@@ -29,3 +29,13 @@ darts run sdxl:v0.3.0 -i Prompt="hiro saves the hive" -i Seed=16
 ```
 
 Playground: for module: https://go.dev/play/p/ddNw8F2hFO8
+
+```
+docker run -it --rm \
+ -v "$PWD":/workspace \
+ -v /dev/dri/by-path:/dev/dri/by-path \
+ --device /dev/dri \
+ --privileged \
+ --network=host \
+ "isdxl:v7"
+```
