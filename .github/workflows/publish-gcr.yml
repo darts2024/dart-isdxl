@@ -30,6 +30,7 @@ env:
   REGISTRY: ghcr.io
   PUSH_TAG: ${{github.repository}}:latest
   REPO: ${{github.repository}}
+  GITHUB_TOKEN: ${{secrets.TOKEN_GITHUB}}
 
 jobs:
   build-and-push-image:
