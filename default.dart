@@ -35,8 +35,8 @@
                 "Type": "local"
             },
             "Resources": {
-                "CPU": "3",
-                "Memory": "3gb",
+                "CPU": "{{ if eq .Device "cpu" }}5{{ else }}3{{ end }}",
+                "Memory": "14gb",
                 "GPU": "{{ if eq .Device "cpu" }}0{{ else }}1{{ end }}"
             },
             "Timeout": 1800,
