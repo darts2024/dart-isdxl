@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   sdxl:
-    build:
+    run:
       context: .
       dockerfile: Dockerfile
       args:
@@ -13,3 +13,13 @@ services:
       - ./data:/outputs
       - ./data:/inputs
       - .:/app
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: intel
+              count: all
+              capabilities: [xpu]
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
