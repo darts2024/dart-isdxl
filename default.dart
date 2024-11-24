@@ -1,8 +1,8 @@
 {
     "machine": {
-        "gpu": 1,
-        "ram": 100,
-        "cpu": 1000
+        "gpu": {{ if eq .Device "cpu" }}0{{ else }}1{{ end }},
+        "ram": 8000,
+        "cpu": {{ if eq .Device "cpu" }}5000{{ else }}3000{{ end }}
     },
     "job": {
         "APIVersion": "V1beta1",
