@@ -27,26 +27,39 @@ def set_seed(seed: int = 42) -> None:
 
 model_name = "runwayml/stable-diffusion-v1-5"
 
-# load the Stable Diffusion model
-pipe = StableDiffusionPipeline.from_pretrained(model_name,torch_dtype=torch.float16)
-
-
 # xpu: Intel
 # cpu: CPU
 # cuda: nvidia
 # mps: mac meta
 
 device = os.getenv("DEVICE", "xpu")
+modelArgs = {
+    "torch_dtype" : torch.float16
+}
 
 print("Device is",device)
 
-if device == "xpu":
-    import intel_extension_for_pytorch as ipex
-    
-    try:
-        print(ipex.xpu.get_device_name(0))
-    except Exception as e:
-        logging.exception(e)
+
+match device:
+    case "xpu":
+        import intel_extension_for_pytorch as ipex
+        
+        try:
+            print(ipex.xpu.get_device_name(0))
+        except Exception as e:
+            logging.exception(e)
+        
+#    case "xpu", "cuda":
+        
+    case "cpu":
+        modelArgs["torch_dtype"] = None
+        
+        
+
+
+# load the Stable Diffusion model
+pipe = StableDiffusionPipeline.from_pretrained(model_name,**modelArgs)
+
 
 pipe = pipe.to(device)
 
