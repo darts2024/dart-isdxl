@@ -16,8 +16,8 @@ on:
         type: choice
         description: "Operating system to run the job on"
         options:
-          - self-hosted
           - ubuntu-latest
+          - self-hosted
         required: true
 
 # concurrency:
@@ -31,7 +31,6 @@ env:
   REGISTRY: ghcr.io
   PUSH_TAG: ${{github.repository}}:latest
   REPO: ${{github.repository}}
-  # GITHUB_TOKEN: ${{secrets.TOKEN_GITHUB}}
 
 jobs:
   build-and-push-image:
@@ -93,10 +92,6 @@ jobs:
           fetch-depth: 1
       #          fetch-tags: true
 
-      - uses: docker-practice/actions-setup-docker@master
-        if: ${{  github.event.inputs.runs-on ||  'ubuntu-latest' != 'ubuntu-latest' }}
-        timeout-minutes: 12
-
       - name: Log in to the Container registry
         uses: docker/login-action@v3
         with:
@@ -104,7 +99,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-          # https://github.com/marketplace/actions/docker-metadata-action#images-input
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
