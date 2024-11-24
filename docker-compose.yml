@@ -6,8 +6,8 @@ x-common: &common-config
     dockerfile: Dockerfile
     args:
       HUGGINGFACE_TOKEN: ${HUGGINGFACE_TOKEN}
-  environment:
-    HUGGINGFACE_TOKEN: ${HUGGINGFACE_TOKEN}
+  entrypoint: /app/inference.py
+
   volumes:
     - ./data:/outputs
     - ./data:/inputs
