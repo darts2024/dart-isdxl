@@ -28,7 +28,7 @@ def set_seed(seed: int = 42) -> None:
 model_name = "runwayml/stable-diffusion-v1-5"
 
 # load the Stable Diffusion model
-pipe = StableDiffusionPipeline.from_pretrained(model_name,revision="fp16",torch_dtype=torch.float16)
+pipe = StableDiffusionPipeline.from_pretrained(model_name,torch_dtype=torch.float16)
 
 
 # xpu: Intel
