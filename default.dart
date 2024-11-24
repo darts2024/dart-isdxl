@@ -15,7 +15,7 @@
                     "bash", "-c",
                     "python3 /app/inference.py 2>/dev/null"
                 ],
-                "Image": "laciferin/isdxl:0.0.0-v7",
+                "Image": "laciferin/isdxl:v0.0.7",
                 "EnvironmentVariables": [
                     {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cat sitting on a park bench"{{end}},
                     "{{ subt "RANDOM_SEED=%s" (or .Seed "42")  }}",
