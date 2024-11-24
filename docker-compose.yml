@@ -12,23 +12,31 @@ x-common: &common-config
     - ./data:/outputs
     - ./data:/inputs
     - .:/app
-  deploy:
-    resources:
-      reservations:
-        devices:
-          - driver: intel
-            count: all
-            capabilities: [xpu]
-          - driver: nvidia
-            count: all
-            capabilities: [gpu]
+
+  privileged: true
+
+  # deploy:
+  #   resources:
+  #     reservations:
+  #       devices:
+  #         - driver: nvidia
+  #           count: all
+  #           capabilities: [gpu]
 
 services:
   isdxl:
     <<: *common-config
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: intel
+    #           count: all
+    #           capabilities: [xpu]
 
   isdxl-cpu:
     <<: *common-config
     environment:
       DEVICE: cpu
       PROMPT: "cat in a bag"
+    privileged: false
