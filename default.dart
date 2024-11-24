@@ -15,7 +15,7 @@
                     "bash", "-c",
                     "python3 /app/inference.py 2>/dev/null"
                 ],
-                "Image": "laciferin/isdxl:v0.1.0",
+                "Image": "laciferin/isdxl:0.0.0-v7",
                 "EnvironmentVariables": [
                     {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cat sitting on a park bench"{{end}},
                     "{{ subt "RANDOM_SEED=%s" (or .Seed "42")  }}",
@@ -37,7 +37,7 @@
             "Resources": {
                 "CPU": "3",
                 "Memory": "3gb",
-                "GPU": "1"
+                "GPU": "{{ if eq .Device "cpu" }}0{{ else }}1{{ end }}"
             },
             "Timeout": 1800,
             "Verifier": "Noop",
