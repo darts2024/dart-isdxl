@@ -56,7 +56,7 @@ prompt = os.getenv("PROMPT", "a cat sitting on a park bench")
 seed = int(os.getenv("RANDOM_SEED", "40"))
 set_seed(seed)
 
-g = torch.Generator(device="cuda")
+g = torch.Generator(device=device)
 g.manual_seed(seed)
 
 
@@ -68,8 +68,8 @@ g.manual_seed(seed)
 #pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
 
 
-# images = pipe(prompt=prompt, generator=g).images
-images = pipe(prompt=prompt).images
+images = pipe(prompt=prompt, generator=g).images
+# images = pipe(prompt=prompt).images
 print(f"Got {len(images)} images")
 
 
