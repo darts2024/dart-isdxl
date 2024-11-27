@@ -1,36 +1,25 @@
-# SDXL v0.9 in Docker 🐋
+# ISDXL : sdxl in intel
 
-```
-export HUGGINGFACE_TOKEN=<my huggingface token>
-```
+## Support
 
-```
-docker build -t sdxl:v0.9 --build-arg HUGGINGFACE_TOKEN=$HUGGINGFACE_TOKEN .
-```
-
-```
-mkdir -p outputs
-```
-
-```
-docker run -ti --gpus all \
-    -v $PWD/outputs:/outputs \
-    -e OUTPUT_DIR=/outputs/ \
-    -e PROMPT="an astronaut riding an orange horse" \
-    sdxl:v0.9
-```
-
-Will overwrite `outputs/image0.png` each time.
+- cpu
+- xpu (intel)
+- gaudi (intel accelerator)
+- nvidia
 
 ### Dart
 
 ```
-darts run sdxl:v0.3.0 -i Prompt="hiro saves the hive" -i Seed=16
+darts run github.com/darts2024/dart-isdxl:v0.2.0 -i Prompt="cat sit on a trampoline" -i Device="xpu
+"
 ```
 
-Playground: for module: https://go.dev/play/p/ddNw8F2hFO8
+### Dev Docs
 
-```
+Playground: for building the module: https://go.dev/play/p/ddNw8F2hFO8
+
+```shell
+
 docker run -it --rm \
  -v "$PWD"/data:/outputs \
  -v /dev/dri/by-path:/dev/dri/by-path \
@@ -39,8 +28,9 @@ docker run -it --rm \
  --network=host \
  "isdxl:v7"
 
- docker run -it --rm \
+docker run -it --rm \
  -v "$PWD"/data:/outputs \
  --privileged \
  "laciferin/isdxl:v0.0.7"
+
 ```
