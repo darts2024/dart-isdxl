@@ -5,6 +5,8 @@ on:
       - main
       - ci/**
     tags:
+      - "*"
+      - "**"
 
   pull_request:
     branches:
