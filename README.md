@@ -26,11 +26,11 @@ docker run -it --rm \
  --device /dev/dri \
  --privileged \
  --network=host \
- "isdxl:v7"
+ "laciferin/isdxl:v0.0.8"
 
 docker run -it --rm \
  -v "$PWD"/data:/outputs \
  --privileged \
- "laciferin/isdxl:v0.0.7"
+ "laciferin/isdxl:v0.0.8"
 
 ```
