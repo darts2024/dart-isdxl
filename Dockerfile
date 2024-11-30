@@ -42,8 +42,16 @@ ENV PROMPT='a cat sitting on a park bench'
 ENV OUTPUT_DIR="/outputs/"
 ENV DEVICE="xpu"
 
+# optimization
+
+ENV PYTORCH_JIT_LOG_LEVEL=ERROR
+ENV PYTORCH_JIT_OPTIMIZE=1
+
 # preload a torch backend for the device
 RUN python3 -c "import torch; torch.ones(1).to('cpu')"
 RUN python3 -c "import torch; torch.ones(1).to('xpu')" || echo "Fialed to load xpu"
+
+RUN python3 -m compileall $(python3 -c "import torch; import os; print(os.path.dirname(torch.__file__))")
+
 
 ENTRYPOINT ["python3", "/app/inference.py"]
