@@ -42,4 +42,7 @@ ENV PROMPT='a cat sitting on a park bench'
 ENV OUTPUT_DIR="/outputs/"
 ENV DEVICE="xpu"
 
+# preload a torch backend for the device
+RUN python3 -c "import torch; torch.ones(1).to('cpu')"
+
 ENTRYPOINT ["python3", "/app/inference.py"]
