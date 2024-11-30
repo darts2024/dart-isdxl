@@ -54,4 +54,9 @@ RUN python3 -c "import torch; torch.ones(1).to('xpu')" || echo "Fialed to load x
 RUN python3 -m compileall $(python3 -c "import torch; import os; print(os.path.dirname(torch.__file__))")
 
 
+RUN python3 -m compileall $(python3 -c "import site; print(site.getsitepackages()[0])")
+
+RUN python3 -m compileall /app/inference.py
+
+
 ENTRYPOINT ["python3", "/app/inference.py"]
