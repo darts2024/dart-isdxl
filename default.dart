@@ -2,7 +2,7 @@
     "machine": {
         "gpu": {{ if eq .Device "cpu" }}0{{ else }}1{{ end }},
         "ram": 8000,
-        "cpu": {{ if eq .Device "cpu" }}6000{{ else }}3000{{ end }}
+        "cpu": {{ if eq .Device "cpu" }}{{(mul {{(or .cpu "6")}} 1000)}}{{ else }}3000{{ end }}
     },
     "job": {
         "APIVersion": "V1beta1",
