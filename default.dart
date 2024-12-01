@@ -15,10 +15,10 @@
                     "bash", "-c",
                     "python3 /app/inference.py 2>/dev/null"
                 ],
-                "Image": "ghcr.io/darts2024/isdxl:{{ or .dockerTag "v0.3.2"}}",
+                "Image": "ghcr.io/darts2024/isdxl:{{ or .dockerTag "v0.3.3"}}",
                 "EnvironmentVariables": [
                     {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cat sitting on a park bench"{{end}},
-                    "{{ subt "RANDOM_SEED=%s" (or .Seed "42")  }}",
+                    "{{ subt "RANDOM_SEED=%s" (or .Seed "1")  }}",
                     "{{ subt "DEVICE=%s" (or .Device "xpu")  }}",
                     "OUTPUT_DIR=/outputs/",
                     "HF_HUB_OFFLINE=1"

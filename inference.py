@@ -66,7 +66,7 @@ pipe = pipe.to(device)
 
 prompt = os.getenv("PROMPT", "a cat sitting on a park bench")
 
-seed = int(os.getenv("RANDOM_SEED", "40"))
+seed = int(os.getenv("RANDOM_SEED", "42"))
 set_seed(seed)
 
 g = torch.Generator(device=device)
