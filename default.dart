@@ -2,7 +2,7 @@
     "machine": {
         "gpu": {{ if eq .Device "cpu" }}0{{ else }}1{{ end }},
         "ram": 8000,
-        "cpu": {{ if eq .Device "cpu" }}{{(mul {{(or .cpu "6")}} 1000)}}{{ else }}3000{{ end }}
+        "cpu": {{ if eq .Device "cpu" }}{{ mul (or .cpu "6") 1000 }}{{ else }}3000{{ end }}
     },
     "job": {
         "APIVersion": "V1beta1",
@@ -15,7 +15,7 @@
                     "bash", "-c",
                     "python3 /app/inference.py 2>/dev/null"
                 ],
-                "Image": "ghcr.io/darts2024/isdxl:{{ or .dockerTag "v0.3.3"}}",
+                "Image": "ghcr.io/darts2024/isdxl:{{ or .dockerTag "v0.3.4"}}",
                 "EnvironmentVariables": [
                     {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cat sitting on a park bench"{{end}},
                     "{{ subt "RANDOM_SEED=%s" (or .Seed "1")  }}",
