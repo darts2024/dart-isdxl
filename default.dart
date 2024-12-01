@@ -35,9 +35,9 @@
                 "Type": "local"
             },
             "Resources": {
-                "CPU": "{{ if eq .Device "cpu" }}(or .cpu "6"){{ else }}3{{ end }}",
-                "Memory": "{{(or .memory "8gb")}}",
-                "GPU": "{{ if eq .Device "cpu" }}0{{ else }}1{{ end }}"
+                "CPU": "{{ if eq .Device cpu }} {{( or .cpu 6 )}}{{ else }}3{{ end }}",
+                "Memory": "{{(or .memory 8gb)}}",
+                "GPU": "{{ if eq .Device cpu }}0{{ else }}1{{ end }}"
             },
             "Timeout": 1800,
             "Verifier": "Noop",
