@@ -2,7 +2,7 @@
     "machine": {
         "gpu": {{ if eq .Device "cpu" }}0{{ else }}1{{ end }},
         "ram": 8000,
-        "cpu": {{ if eq .Device "cpu" }}5000{{ else }}3000{{ end }}
+        "cpu": {{ if eq .Device "cpu" }}6000{{ else }}3000{{ end }}
     },
     "job": {
         "APIVersion": "V1beta1",
@@ -35,10 +35,10 @@
                 "Type": "local"
             },
             "Resources": {
-                "CPU": "{{ if eq .Device cpu }} {{( or .cpu 6 )}}{{ else }}3{{ end }}",
-                "Memory": "{{(or .memory 8gb)}}",
-                "GPU": "{{ if eq .Device cpu }}0{{ else }}1{{ end }}"
-            },
+                "CPU": "{{ if (eq .Device "cpu") }}{{(or .cpu "6")}}{{ else }}3{{ end }}",
+                "Memory": "{{(or .memory "8gb")}}",
+                "GPU": "{{ if (eq .Device "cpu") }}0{{ else }}1{{ end }}"
+           },
             "Timeout": 1800,
             "Verifier": "Noop",
             "Wasm": {
