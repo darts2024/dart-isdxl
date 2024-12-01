@@ -32,7 +32,7 @@
       "EntryModule": {}
     },
     "Resources": {
-      "CPU": "6",
+      "CPU": "22",
       "Memory": "8gb",
       "GPU": "0"
     },
