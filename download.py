@@ -1,6 +1,6 @@
 import torch
 
-model_name:str = "runwayml/stable-diffusion-v1-5"
+from config import model_name
 
 try:
   from diffusers import StableDiffusionPipeline

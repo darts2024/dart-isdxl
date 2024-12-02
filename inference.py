@@ -10,6 +10,8 @@ os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":16:8"
 torch.backends.cudnn.benchmark = False
 # torch.use_deterministic_algorithms(True)
 
+from config import model_name
+
 import torch
 from diffusers import StableDiffusionPipeline
 
@@ -25,7 +27,6 @@ def set_seed(seed: int = 42) -> None:
     os.environ["PYTHONHASHSEED"] = str(seed)
     print(f"Random seed set as {seed}")
 
-model_name = "runwayml/stable-diffusion-v1-5"
 
 # xpu: Intel
 # cpu: CPU
