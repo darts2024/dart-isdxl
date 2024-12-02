@@ -13,7 +13,7 @@ torch.backends.cudnn.benchmark = False
 from config import model_name
 
 import torch
-from diffusers import StableDiffusionPipeline
+from diffusers import DiffusionPipeline
 
 def set_seed(seed: int = 42) -> None:
     np.random.seed(seed)
@@ -58,8 +58,7 @@ match device:
         
 
 
-# load the Stable Diffusion model
-pipe = StableDiffusionPipeline.from_pretrained(model_name,**modelArgs)
+pipe = DiffusionPipeline.from_pretrained(model_name,**modelArgs)
 
 
 pipe = pipe.to(device)
