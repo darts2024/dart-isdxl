@@ -1,6 +1,21 @@
-FROM intel/intel-extension-for-pytorch:2.1.40-xpu
+FROM python:3.12-slim as downloader
 
 ARG HUGGINGFACE_TOKEN='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'
+
+RUN pip install --no-cache-dir huggingface_hub==0.16.4 
+
+WORKDIR /app
+COPY *.py /app
+
+ADD requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
+
+# Login to HuggingFace and download model
+RUN huggingface-cli login --token $HUGGINGFACE_TOKEN || echo "huggingface login failed"
+RUN python3 download.py
+
+
+FROM intel/intel-extension-for-pytorch:2.1.40-xpu
 
 RUN mkdir /app
 WORKDIR /app
@@ -19,20 +34,12 @@ RUN pip install -r requirements.txt
 ENV PIP_TIMEOUT=1000
 
 RUN export DEBIAN_FRONTEND=noninteractive && \
-    apt-get update -y && apt-get install -y libjpeg-dev libpng-dev libgl1-mesa-glx libglib2.0-0 && \
-    pip3 install huggingface_hub==0.16.4 
+    apt-get update -y && apt-get install -y libjpeg-dev libpng-dev libgl1-mesa-glx libglib2.0-0 
 
-RUN huggingface-cli login --token $HUGGINGFACE_TOKEN ||  echo "huggingface login failed"
 # python3 -c 'from diffusers import DiffusionPipeline; import torch; DiffusionPipeline.from_pretrained("runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, use_safetensors=True, variant="fp16")' 
 
+COPY --from=downloader /app/models /app/models
 
-
-RUN python3 /app/download.py
-
-
-RUN rm -rf /root/.cache/huggingface/token
-
-# TODO: cache:
 
 ENV HF_DATASETS_OFFLINE=1 
 ENV TRANSFORMERS_OFFLINE=1 
