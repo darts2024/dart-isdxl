@@ -1,13 +1,15 @@
 import torch
 
-from config import model_name
+from config import model_name, model_path
+
+pipe = None
 
 try:
   from diffusers import DiffusionPipeline
-  DiffusionPipeline.from_pretrained(model_name)
+  pipe = DiffusionPipeline.from_pretrained(model_name)
 except:
   from diffusers import StableDiffusionPipeline
-  pipeline = StableDiffusionPipeline.from_pretrained(model_name)
+  pipe = StableDiffusionPipeline.from_pretrained(model_name)
 
 
-# pipeline.save_pretrained("./stable-diffusion-v1-5")
+pipe.save_pretrained(model_path)

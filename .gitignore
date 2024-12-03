@@ -8,3 +8,5 @@
 job-*/
 
 data/
+
+*.pyc
