@@ -1,14 +1,16 @@
-FROM python:3.12-slim as downloader
+FROM python:3.13-slim as downloader
 
 ARG HUGGINGFACE_TOKEN='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'
 
-RUN pip install --no-cache-dir huggingface_hub==0.16.4 
+RUN pip install --no-cache-dir huggingface_hub==0.16.4 torch diffusers
 
 WORKDIR /app
-COPY *.py /app
+ADD *.py .
 
-ADD requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt
+
+# donwloading models need rust prinstalled
+RUN curl https://sh.rustup.rs -sSf | sh
+
 
 # Login to HuggingFace and download model
 RUN huggingface-cli login --token $HUGGINGFACE_TOKEN || echo "huggingface login failed"
