@@ -9,7 +9,7 @@ ADD *.py .
 
 
 # donwloading models need rust prinstalled
-RUN curl https://sh.rustup.rs -sSf | sh
+# RUN curl https://sh.rustup.rs -sSf | sh
 
 
 # Login to HuggingFace and download model
