@@ -1,6 +1,6 @@
 FROM intel/intel-extension-for-pytorch:2.1.40-xpu
 
-ARG HUGGINGFACE_TOKEN
+ARG HUGGINGFACE_TOKEN='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'
 
 RUN mkdir /app
 WORKDIR /app
