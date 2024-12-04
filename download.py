@@ -10,10 +10,10 @@ try:
   pipe = DiffusionPipeline.from_pretrained(model_name)
 except:
   from diffusers import StableDiffusionPipeline
-  pipe = StableDiffusionPipeline.from_pretrained(model_name)
+  pipe = StableDiffusionPipeline.from_pretrained(model_name, cache_dir=model_path)
 
 
-pipe.save_pretrained(model_path)
+# pipe.save_pretrained(model_path)
 
 # from huggingface_hub import snapshot_download
 
