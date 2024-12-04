@@ -7,11 +7,6 @@ RUN pip install --no-cache-dir huggingface_hub==0.16.4 torch diffusers transform
 WORKDIR /app
 ADD *.py .
 
-
-# donwloading models need rust prinstalled
-# RUN curl https://sh.rustup.rs -sSf | sh
-
-
 # Login to HuggingFace and download model
 RUN huggingface-cli login --token $HUGGINGFACE_TOKEN || echo "huggingface login failed"
 RUN python3 download.py
