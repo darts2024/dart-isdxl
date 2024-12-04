@@ -3,7 +3,7 @@ import torch
 from config import model_name, model_path
 
 # inits cpu and is expensive fails: in github actions
-# pipe = None
+pipe = None
 
 try:
   from diffusers import DiffusionPipeline
