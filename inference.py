@@ -10,7 +10,7 @@ os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":16:8"
 torch.backends.cudnn.benchmark = False
 # torch.use_deterministic_algorithms(True)
 
-from config import model_path
+from config import model_name
 
 import torch
 from diffusers import DiffusionPipeline
@@ -58,7 +58,7 @@ match device:
         
 
 
-pipe = DiffusionPipeline.from_pretrained(model_path,**modelArgs)
+pipe = DiffusionPipeline.from_pretrained(model_name,**modelArgs)
 
 
 pipe = pipe.to(device)

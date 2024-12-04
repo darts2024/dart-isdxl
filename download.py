@@ -1,6 +1,6 @@
 import torch
 
-from config import model_name, model_path
+from config import model_name
 
 # inits cpu and is expensive fails: in github actions
 pipe = None
@@ -10,7 +10,7 @@ try:
   pipe = DiffusionPipeline.from_pretrained(model_name)
 except:
   from diffusers import StableDiffusionPipeline
-  pipe = StableDiffusionPipeline.from_pretrained(model_name, cache_dir=model_path)
+  pipe = StableDiffusionPipeline.from_pretrained(model_name)
 
 
 # pipe.save_pretrained(model_path)
@@ -21,4 +21,4 @@ except:
 
 # snapshot_download(repo_id=model_name, cache_dir=model_path, local_dir=model_path)
 
-print(f"Model files downloaded to: {model_path}")
+# print(f"Model files downloaded to: {model_path}")

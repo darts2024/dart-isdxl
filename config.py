@@ -7,6 +7,7 @@ import os
 model_name:Final[str] = "runwayml/stable-diffusion-v1-5"
 model_name:Final[str] = "stabilityai/stable-diffusion-xl-base-1.0"
 
+# deprecated:
 base_model_dir:os.PathLike = "./models"
 
 
@@ -17,6 +18,6 @@ def get_model_path(model_name: str)->str:
     return model_dir
   
   
-model_path= get_model_path(model_name)
+# model_path= get_model_path(model_name)
 
-print(f"Model path: {model_path}")
+# print(f"Model path: {model_path}")
