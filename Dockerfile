@@ -2,7 +2,8 @@ FROM python:3.13-slim as downloader
 
 ARG HUGGINGFACE_TOKEN='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'
 
-RUN pip install --no-cache-dir huggingface_hub==0.16.4 torch diffusers transformers
+RUN pip install --no-cache-dir huggingface_hub==0.16.4 
+# torch diffusers transformers
 
 WORKDIR /app
 ADD *.py .
