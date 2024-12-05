@@ -1,7 +1,7 @@
 {
     "machine": {
         "gpu": {{ if eq .Device "cpu" }}0{{ else }}1{{ end }},
-        "ram": {{ mul ( (regex "\d+" (or .memory "22gb")) 1000 )}},
+        "ram": {{ mul (regex "\\d+" (or .memory "22gb")) 1000 }},
         "cpu": {{ if eq .Device "cpu" }}{{ mul (or .cpu "27") 1000 }}{{ else }}26000{{ end }}
     },
     "job": {
