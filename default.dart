@@ -1,8 +1,8 @@
 {
     "machine": {
         "gpu": {{ if eq .Device "cpu" }}0{{ else }}1{{ end }},
-        "ram": {{ mul (regex "\\d+" (or .memory "22gb")) 1000 }},
-        "cpu": {{ if eq .Device "cpu" }}{{ mul (or .cpu "27") 1000 }}{{ else }}26000{{ end }}
+        "ram": {{ mul (regex "\\d+" (or .memory "18gb")) 1000 }},
+        "cpu": {{ mul (or .cpu "26") 1000 }}
     },
     "job": {
         "APIVersion": "V1beta1",
@@ -35,9 +35,9 @@
                 "Type": "local"
             },
             "Resources": {
-                "CPU": "{{ if (eq .Device "cpu") }}{{(or .cpu "27")}}{{ else }}26{{ end }}",
-                "Memory": "{{(or .memory "22gb")}}",
-                "GPU": "{{ if (eq .Device "cpu") }}0{{ else }}1{{ end }}"
+                "GPU": "{{ if (eq .Device "cpu") }}0{{ else }}1{{ end }}",
+                "Memory": "{{(or .memory "18gb")}}",
+                "CPU": "{{ or .cpu "26" }}"
            },
             "Timeout": 1800,
             "Verifier": "Noop",
