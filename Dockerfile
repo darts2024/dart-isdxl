@@ -37,7 +37,7 @@ ENV HF_DATASETS_OFFLINE=1
 ENV TRANSFORMERS_OFFLINE=1 
 ENV RANDOM_SEED=40
 
-ENV PROMPT='a cat sitting on a park bench'
+ENV PROMPT='cute rabbit in a spacesuit'
 ENV OUTPUT_DIR="/outputs/"
 ENV DEVICE="xpu"
 

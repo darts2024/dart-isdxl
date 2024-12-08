@@ -64,7 +64,7 @@ pipe = DiffusionPipeline.from_pretrained(model_name,**modelArgs)
 pipe = pipe.to(device)
 
 
-prompt = os.getenv("PROMPT", "a cat sitting on a park bench")
+prompt = os.getenv("PROMPT", "cute rabbit in a spacesuit")
 
 seed = int(os.getenv("RANDOM_SEED", "42"))
 set_seed(seed)
