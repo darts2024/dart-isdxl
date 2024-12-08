@@ -92,6 +92,12 @@ outputDir = os.getenv("OUTPUT_DIR", "")
 
 for i in range(len(images)):
     image = images[i]
-    outputImageFile = os.path.join(outputDir,f"image-{i}.png")
+    
+    filename = prompt.replace(" ", "-").lower()
+    if i!=0:
+        filename = f"{filename}-{i}"
+    
+    
+    outputImageFile = os.path.join(outputDir,f"{filename}.png")
     image.save(outputImageFile)
-    print(f"saved Image-{i} to {outputImageFile}")
+    print(f"saved {filename} to {outputImageFile}")
