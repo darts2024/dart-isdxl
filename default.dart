@@ -17,7 +17,7 @@
                 ],
                 "Image": "ghcr.io/darts2024/isdxl:{{ or .dockerTag "v1.0.2"}}",
                 "EnvironmentVariables": [
-                    {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cat sitting on a park bench"{{end}},
+                    {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cute rabbit in a spacesuit"{{end}},
                     "{{ subt "RANDOM_SEED=%s" (or .Seed "1")  }}",
                     "{{ subt "DEVICE=%s" (or .Device "cpu")  }}",
                     "OUTPUT_DIR=/outputs/",
