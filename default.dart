@@ -1,6 +1,6 @@
 {
     "machine": {
-        "gpu": {{ if eq .Device "cpu" }}0{{ else }}1{{ end }},
+        "gpu": {{ if eq .Device "cpu" }}0{{ else }}{{(or .gpu 1 )}}{{ end }},
         "ram": {{ mul (regex "\\d+" (or .ram "16gb")) 1000 }},
         "cpu": {{ mul (or .cpu "18") 1000 }}
     },
@@ -35,7 +35,7 @@
                 "Type": "local"
             },
             "Resources": {
-                "GPU": "{{ if (eq .Device "cpu") }}0{{ else }}1{{ end }}",
+                "GPU": "{{ if (eq .Device "cpu") }}0{{ else }} {{(or .gpu 1 )}} {{ end }}",
                 "Memory": "{{(or .ram "16gb")}}",
                 "CPU": "{{ or .cpu "18" }}"
            },
