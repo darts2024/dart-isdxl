@@ -12,3 +12,5 @@ data/
 *.pyc
 
 outputs/
+
+notepad.sh
