@@ -50,7 +50,7 @@ ENV PYTORCH_JIT_OPTIMIZE=1
 
 # preload a torch backend for the device
 RUN python3 -c "import torch; torch.ones(1).to('cpu')"
-RUN python3 -c "import torch; torch.ones(1).to('xpu')" || echo "Fialed to load xpu"
+RUN python3 -c "import torch; torch.ones(1).to('xpu')" || echo "Failed to load xpu"
 
 RUN python3 -m compileall $(python3 -c "import torch; import os; print(os.path.dirname(torch.__file__))")
 
