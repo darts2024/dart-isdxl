@@ -35,7 +35,9 @@ RUN rm -rf /root/.cache/huggingface/token
 
 ENV HF_DATASETS_OFFLINE=1 
 ENV TRANSFORMERS_OFFLINE=1 
+
 ENV RANDOM_SEED=40
+ENV NUM_IMAGES=1
 
 ENV PROMPT='cute rabbit in a spacesuit'
 ENV OUTPUT_DIR="/outputs/"
