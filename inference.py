@@ -72,6 +72,8 @@ set_seed(seed)
 g = torch.Generator(device=device)
 g.manual_seed(seed)
 
+num_images = int(os.getenv("NUM_IMAGES", "1"))
+print("num images:", num_images)
 
 
 # For low GPU memory:
@@ -81,7 +83,7 @@ g.manual_seed(seed)
 #pipe.unet = torch.compile(pipe.unet, mode="reduce-overhead", fullgraph=True)
 
 
-images = pipe(prompt=prompt, generator=g).images
+images = pipe(prompt=prompt, generator=g, num_images_per_prompt=num_images).images
 # images = pipe(prompt=prompt).images
 print(f"Got {len(images)} images")
 
