@@ -20,7 +20,7 @@
                     {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cute rabbit in a spacesuit"{{end}},
                     "{{ subt "RANDOM_SEED=%s" (or .Seed "1")  }}",
                     "{{ subt "NUM_IMAGES=%s" (or .N "1")  }}",
-                    "{{ subt "DEVICE=%s" (or .Device "cpu")  }}",
+                    "{{ subt "DEVICE=%s" (or .Device "xpu")  }}",
                     "OUTPUT_DIR=/outputs/",
                     "HF_HUB_OFFLINE=1"
                 ]

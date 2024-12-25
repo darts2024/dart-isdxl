@@ -22,9 +22,9 @@
       ],
       "EnvironmentVariables": [
         "PROMPT=cute rabbit in a spacesuit",
-        "RANDOM_SEED=28057",
-        "NUM_IMAGES=1",
-        "DEVICE=cpu",
+        "RANDOM_SEED=23800",
+        "NUM_IMAGES=2",
+        "DEVICE=xpu",
         "OUTPUT_DIR=/outputs/",
         "HF_HUB_OFFLINE=1"
       ]
@@ -33,8 +33,8 @@
       "EntryModule": {}
     },
     "Resources": {
-      "CPU": "18",
-      "Memory": "16gb",
+      "CPU": "27",
+      "Memory": "76gb",
       "GPU": " 1 "
     },
     "Network": {
