@@ -36,7 +36,7 @@
                 "Type": "local"
             },
             "Resources": {
-                "GPU": "{{ if (eq .Device "cpu") }}0{{ else }}(or .gpu 1 ){{ end }}",
+                "GPU": "{{ if (eq .Device "cpu") }}0{{ else }} {{(or .gpu 1 )}} {{ end }}",
                 "Memory": "{{(or .ram "16gb")}}",
                 "CPU": "{{ or .cpu "18" }}"
            },
