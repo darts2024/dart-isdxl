@@ -14,16 +14,17 @@
       "Type": "Local"
     },
     "Docker": {
-      "Image": "ghcr.io/darts2024/isdxl:v0.3.0",
+      "Image": "ghcr.io/darts2024/isdxl:v1.4.0",
       "Entrypoint": [
         "bash",
         "-c",
         "python3 /app/inference.py 2\u003e/dev/null"
       ],
       "EnvironmentVariables": [
-        "PROMPT=cat sit on a trampoline",
-        "RANDOM_SEED=42",
-        "DEVICE=xpu",
+        "PROMPT=cute rabbit in a spacesuit",
+        "RANDOM_SEED=28057",
+        "NUM_IMAGES=1",
+        "DEVICE=cpu",
         "OUTPUT_DIR=/outputs/",
         "HF_HUB_OFFLINE=1"
       ]
@@ -32,9 +33,9 @@
       "EntryModule": {}
     },
     "Resources": {
-      "CPU": "3",
-      "Memory": "8gb",
-      "GPU": "1"
+      "CPU": "18",
+      "Memory": "16gb",
+      "GPU": " 1 "
     },
     "Network": {
       "Type": "None"
