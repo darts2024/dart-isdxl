@@ -23,7 +23,7 @@
       "EnvironmentVariables": [
         "PROMPT=cute dog in a spacesuit",
         "RANDOM_SEED=23800",
-        "NUM_IMAGES=1",
+        "NUM_IMAGES=4",
         "DEVICE=xpu",
         "OUTPUT_DIR=/outputs/",
         "HF_HUB_OFFLINE=1"
