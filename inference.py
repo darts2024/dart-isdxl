@@ -97,12 +97,20 @@ for i in range(len(images)):
     
     # keywords = [word for word in prompt.split() if len(word) > 3]
     
-    MAX_LENGTH = 50 # 255 for 
+    MAX_LENGTH = 150 # 255 for 
     
     filename = prompt.replace(" ", "-").lower()
-    filename = filename[:MAX_LENGTH]
+    
+    # Truncate at the nearest full word
+    if len(filename) > MAX_LENGTH:
+        truncated = filename[:MAX_LENGTH]  # Initial truncation
+        if "-" in truncated:
+            filename = truncated[:truncated.rfind("-")]  # Find the last complete word
+        else:
+            filename = truncated
+    
     if i!=0:
-        filename = f"{filename}-{i}"
+        filename = f"{filename}.{i}"
     
     
     outputImageFile = os.path.join(outputDir,f"{filename}.png")
