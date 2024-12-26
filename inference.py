@@ -95,7 +95,12 @@ outputDir = os.getenv("OUTPUT_DIR", "")
 for i in range(len(images)):
     image = images[i]
     
+    # keywords = [word for word in prompt.split() if len(word) > 3]
+    
+    MAX_LENGTH = 50 # 255 for 
+    
     filename = prompt.replace(" ", "-").lower()
+    filename = filename[:MAX_LENGTH]
     if i!=0:
         filename = f"{filename}-{i}"
     
