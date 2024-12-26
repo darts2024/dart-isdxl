@@ -15,7 +15,7 @@
                     "bash", "-c",
                     "python3 /app/inference.py"
                 ],
-                "Image": "ghcr.io/darts2024/isdxl:{{ or .dockerTag "v1.5.0"}}",
+                "Image": "ghcr.io/darts2024/isdxl:{{ or .dockerTag "v1.5.0-docker"}}",
                 "EnvironmentVariables": [
                     {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cute rabbit in a spacesuit"{{end}},
                     "{{ subt "RANDOM_SEED=%s" (or .Seed "1")  }}",
