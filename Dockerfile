@@ -1,4 +1,4 @@
-FROM intel/intel-optimized-pytorch:latest
+FROM intel/intel-optimized-pytorch:2.3.110-xpu-idp-base
 
 ARG HUGGINGFACE_TOKEN='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'
 
