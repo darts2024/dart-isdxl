@@ -34,3 +34,5 @@ docker run -it --rm \
  "laciferin/isdxl:v0.0.8"
 
 ```
+
+https://hub.docker.com/r/intel/intel-optimized-pytorch/tags
