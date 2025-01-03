@@ -6,6 +6,10 @@ import os
 
 model_name:Final[str] = "runwayml/stable-diffusion-v1-5"
 model_name:Final[str] = "stabilityai/stable-diffusion-xl-base-1.0"
+model_name:Final[str] = "stabilityai/stable-diffusion-xl-base-1.0"
+model_name:Final[str] = "stabilityai/stable-diffusion-3-medium"
+model_name:Final[str] = "stabilityai/stable-diffusion-3.5-large"
+model_name:Final[str] = "stabilityai/stable-diffusion-3.5-large-turbo"
 
 # deprecated:
 base_model_dir:os.PathLike = "./models"
