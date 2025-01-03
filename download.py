@@ -1,17 +1,9 @@
 import torch
 
-from config import model_name
+from .config import model_name, load_model
 
 # inits cpu and is expensive fails: in github actions
-pipe = None
-
-try:
-  from diffusers import DiffusionPipeline
-  pipe = DiffusionPipeline.from_pretrained(model_name)
-except:
-  from diffusers import StableDiffusionPipeline
-  pipe = StableDiffusionPipeline.from_pretrained(model_name)
-
+pipe = load_model(model_name)
 
 # pipe.save_pretrained(model_path)
 
