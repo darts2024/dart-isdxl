@@ -10,7 +10,7 @@
 ### Dart
 
 ```
-darts run github.com/darts2024/dart-isdxl:v1.5.0 -i Prompt="cat sit on a trampoline" -i Device="xpu
+darts run github.com/darts2024/dart-isdxl:v1.6.0 -i Prompt="cat sit on a trampoline" -i Device="xpu
 "
 ```
 

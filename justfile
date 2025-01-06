@@ -24,3 +24,6 @@ b1 jobFile="job.json":
   cd data && rm -rf exitCode stderr stdout
   b create --download -f --output-dir './data' --wait {{jobFile}}
   mv data/*.png ./outputs
+
+docker *ARGS:
+  docker run -it --privileged {{ARGS}}
