@@ -15,12 +15,13 @@
                     "bash", "-c",
                     "python3 /app/inference.py"
                 ],
-                "Image": "ghcr.io/darts2024/isdxl:{{ or .dockerTag "v1.5.0-docker"}}",
+                "Image": "ghcr.io/darts2024/isdxl:{{ or .dockerTag "v1.6.0"}}",
                 "EnvironmentVariables": [
                     {{if .Prompt}}"{{ subt "PROMPT=%s" .Prompt }}"{{else}}"PROMPT=cute rabbit in a spacesuit"{{end}},
                     "{{ subt "RANDOM_SEED=%s" (or .Seed "1")  }}",
                     "{{ subt "NUM_IMAGES=%s" (or .N "1")  }}",
                     "{{ subt "DEVICE=%s" (or .Device "xpu")  }}",
+                    "{{ subt "IMAGE_FORMAT=%s" (or .Format "png")  }}",
                     "OUTPUT_DIR=/outputs/",
                     "HF_HUB_OFFLINE=1"
                 ]

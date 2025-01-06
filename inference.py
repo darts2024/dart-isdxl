@@ -87,6 +87,8 @@ images = pipe(prompt=prompt, generator=g, num_images_per_prompt=num_images).imag
 # images = pipe(prompt=prompt).images
 print(f"Got {len(images)} images")
 
+image_format = os.getenv("IMAGE_FORMAT", "png").strip().lower()
+
 
 # OUTPUT_DIR must have a trailing slash
 
@@ -111,8 +113,12 @@ for i in range(len(images)):
     
     if i!=0:
         filename = f"{filename}.{i}"
+        
+    outputImageFile = os.path.join(outputDir,f"{filename}.{image_format}")
     
-    
-    outputImageFile = os.path.join(outputDir,f"{filename}.png")
-    image.save(outputImageFile)
+    if image_format=="png":
+        image.save(outputImageFile)
+    else:
+        image.save(outputImageFile,format=image_format.upper(), optimize=True)
+
     print(f"saved {filename} to {outputImageFile}")
