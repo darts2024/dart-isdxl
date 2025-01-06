@@ -6,9 +6,9 @@ import os
 
 model_name:Final[str] = "runwayml/stable-diffusion-v1-5"
 model_name:Final[str] = "stabilityai/stable-diffusion-xl-base-1.0"
-model_name:Final[str] = "stabilityai/stable-diffusion-3-medium"
-model_name:Final[str] = "stabilityai/stable-diffusion-3.5-large"
-model_name:Final[str] = "stabilityai/stable-diffusion-3.5-large-turbo"  #needs extra config
+# model_name:Final[str] = "stabilityai/stable-diffusion-3-medium"
+# model_name:Final[str] = "stabilityai/stable-diffusion-3.5-large"
+# model_name:Final[str] = "stabilityai/stable-diffusion-3.5-large-turbo"  #needs extra config
 
 # deprecated:
 base_model_dir:os.PathLike = "./models"
@@ -23,19 +23,19 @@ def get_model_path(model_name: str)->str:
 
 def load_model(model_name: str, **kwargs):
 
-    if "3" in model_name:
-        from diffusers import StableDiffusion3Pipeline
+    # if "3" in model_name:
+    #     from diffusers import StableDiffusion3Pipeline
         
-        pipe = StableDiffusion3Pipeline.from_pretrained(model_name,**kwargs)
+    #     pipe = StableDiffusion3Pipeline.from_pretrained(model_name,**kwargs)
     
-        return pipe
+    #     return pipe
        
-    else:
-      from diffusers import DiffusionPipeline
+    # else:
+    from diffusers import DiffusionPipeline
 
-      pipe = DiffusionPipeline.from_pretrained(model_name,**kwargs)
-      
-      return pipe
+    pipe = DiffusionPipeline.from_pretrained(model_name,**kwargs)
+    
+    return pipe
 
 
   
