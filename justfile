@@ -27,3 +27,6 @@ b1 jobFile="job.json":
 
 docker *ARGS:
   docker run -it --privileged {{ARGS}}
+
+ghcr VERSION="v1.6.0":
+  just docker ghcr.io/darts2024/isdxl:{{VERSION}}
