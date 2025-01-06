@@ -21,7 +21,7 @@
                     "{{ subt "RANDOM_SEED=%s" (or .Seed "1")  }}",
                     "{{ subt "NUM_IMAGES=%s" (or .N "1")  }}",
                     "{{ subt "DEVICE=%s" (or .Device "xpu")  }}",
-                    "{{ subt "IMAGE_FORMAT=%s" (or .Format "png")  }}",
+                    "{{ subt "IMAGE_FORMAT=%s" (or .Format "webp")  }}",
                     "OUTPUT_DIR=/outputs/",
                     "HF_HUB_OFFLINE=1"
                 ]
