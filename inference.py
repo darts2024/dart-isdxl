@@ -10,7 +10,7 @@ os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":16:8"
 torch.backends.cudnn.benchmark = False
 # torch.use_deterministic_algorithms(True)
 
-from .config import *
+from config import *
 
 import torch
 from diffusers import DiffusionPipeline

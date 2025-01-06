@@ -1,6 +1,6 @@
 import torch
 
-from .config import model_name, load_model
+from config import model_name, load_model
 
 # inits cpu and is expensive fails: in github actions
 pipe = load_model(model_name)
