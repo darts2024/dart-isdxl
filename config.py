@@ -1,6 +1,6 @@
 
 from pathlib import Path
-from typing import Final
+from typing import Final, Literal
 
 import os
 
@@ -42,3 +42,10 @@ def load_model(model_name: str, **kwargs):
 # model_path= get_model_path(model_name)
 
 # print(f"Model path: {model_path}")
+
+
+JPEG : Final[str] = "jpeg"
+PNG : Final[str] = "png"
+WEBP : Final[str] = "webp"
+
+ImageFormats = Literal["jpeg", "png", "webp"]

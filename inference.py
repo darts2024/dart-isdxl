@@ -10,7 +10,7 @@ os.environ["CUBLAS_WORKSPACE_CONFIG"] = ":16:8"
 torch.backends.cudnn.benchmark = False
 # torch.use_deterministic_algorithms(True)
 
-from .config import model_name,load_model
+from .config import *
 
 import torch
 from diffusers import DiffusionPipeline
@@ -87,7 +87,15 @@ images = pipe(prompt=prompt, generator=g, num_images_per_prompt=num_images).imag
 # images = pipe(prompt=prompt).images
 print(f"Got {len(images)} images")
 
-image_format = os.getenv("IMAGE_FORMAT", "png").strip().lower()
+image_format:ImageFormats = os.getenv("IMAGE_FORMAT", "png").strip().lower()
+
+if image_format not in {"jpeg", "jpg", "png", "webp"}:
+    print(f"unsupported image format: {image_format}")
+
+if image_format == "jpg":
+    image_format = JPEG
+
+print("image_format: " + image_format)
 
 
 # OUTPUT_DIR must have a trailing slash
