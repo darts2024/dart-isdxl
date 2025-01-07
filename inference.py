@@ -63,6 +63,11 @@ pipe = load_model(model_name,**modelArgs)
 
 pipe = pipe.to(device)
 
+CPU_OFFLOAD = int(os.getenv("CPU_OFFLOAD", 0))
+
+if CPU_OFFLOAD:
+    pipe.enable_model_cpu_offload()
+
 
 prompt = os.getenv("PROMPT", "cute rabbit in a spacesuit")
 
