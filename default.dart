@@ -22,7 +22,7 @@
                     "{{ subt "NUM_IMAGES=%s" (or .N "1")  }}",
                     "{{ subt "DEVICE=%s" (or .Device "xpu")  }}",
                     "{{ subt "IMAGE_FORMAT=%s" (or .Format "webp")  }}",
-                    "{{ subt "CPU_OFFLOAD=%s" (or .CpuOffload "1")  }}",
+                    "{{ subt "CPU_OFFLOAD=%s" (or .CpuOffload "0")  }}",
                     "OUTPUT_DIR=/outputs/",
                     "HF_HUB_OFFLINE=1"
                 ]
