@@ -1,0 +1,53 @@
+{
+  "APIVersion": "V1beta1",
+  "Metadata": {
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "Requester": {}
+  },
+  "Spec": {
+    "Engine": "Docker",
+    "EngineSpec": {
+      "Type": "",
+      "Params": null
+    },
+    "PublisherSpec": {
+      "Type": "Local"
+    },
+    "Docker": {
+      "Image": "ghcr.io/darts2024/isdxl:v0.3.2",
+      "Entrypoint": [
+        "bash",
+        "-c",
+        "python3 /app/inference.py 2\u003e/dev/null"
+      ],
+      "EnvironmentVariables": [
+        "PROMPT=cute rabbit in a spacesuit",
+        "RANDOM_SEED=42",
+        "DEVICE=cpu",
+        "OUTPUT_DIR=/outputs/",
+        "HF_HUB_OFFLINE=1"
+      ]
+    },
+    "Wasm": {
+      "EntryModule": {}
+    },
+    "Resources": {
+      "CPU": "35",
+      "Memory": "809.6gb",
+      "GPU": "0"
+    },
+    "Network": {
+      "Type": "None"
+    },
+    "Timeout": 1800,
+    "Outputs": [
+      {
+        "Name": "outputs",
+        "Path": "/outputs"
+      }
+    ],
+    "Deal": {
+      "Concurrency": 1
+    }
+  }
+}

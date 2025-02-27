@@ -1,0 +1,45 @@
+{
+    "Type": "batch",
+    "Count": 1,
+    "Tasks": [
+        {
+            "Name": "inference job",
+            "Engine": {
+                "Type": "Docker",
+                "Params": {
+                    "Image": "ghcr.io/darts2024/isdxl:v0.3.2",
+                    "Entrypoint": [
+                        "bash",
+                        "-c",
+                        "python3 /app/inference.py 2>/dev/null"
+                    ],
+                    "EnvironmentVariables": [
+                        "PROMPT=cute rabbit in a spacesuit",
+                        "RANDOM_SEED=42",
+                        "DEVICE=cpu",
+                        "OUTPUT_DIR=/outputs/",
+                        "HF_HUB_OFFLINE=1"
+                    ]
+                }
+            },
+            "PublisherSpec": {
+                "Type": "Local"
+            },
+            "Resources": {
+                "CPU": "22",
+                "Memory": "8gb",
+                "GPU": "0"
+            },
+            "Network": {
+                "Type": "None"
+            },
+            "Timeout": 1800,
+            "Outputs": [
+                {
+                    "Name": "outputs",
+                    "Path": "/outputs"
+                }
+            ]
+        }
+    ]
+}
